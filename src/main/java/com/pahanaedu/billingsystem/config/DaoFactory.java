@@ -1,4 +1,9 @@
-package com.pahanaedu.billingsystem.dao;
+package com.pahanaedu.billingsystem.config;
+
+import com.pahanaedu.billingsystem.dao.DaoTypes;
+import com.pahanaedu.billingsystem.dao.SuperDAO;
+import com.pahanaedu.billingsystem.dao.impl.CustomerDAOImpl;
+import com.pahanaedu.billingsystem.dao.impl.ItemDAOImpl;
 
 /**
  * Author: Vishnuka Yahan De Silva
