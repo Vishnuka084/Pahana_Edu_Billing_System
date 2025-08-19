@@ -1,0 +1,45 @@
+package com.pahanaedu.billingsystem.dto;
+
+/**
+ * Author: Vishnuka Yahan De Silva
+ * User:macbookair
+ * Date:2025-08-16
+ * Time:15:51
+ */
+public class UserDTO {
+    private String username;
+    private String password;
+
+    public UserDTO() {
+    }
+    public UserDTO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    //password --->
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+}
