@@ -1,4 +1,13 @@
-package com.pahanaedu.billingsystem.api;
+package com.pahanaedu.billingsystem.controller;
+
+import com.pahanaedu.billingsystem.dto.OrderDTO;
+import com.pahanaedu.billingsystem.dto.RespondsDTO;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
@@ -8,7 +17,7 @@ import java.io.IOException;
  * Date:2025-08-19
  * Time:14:36
  */
-public class OrderHandler extends HttpServlet {
+public class OrderController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

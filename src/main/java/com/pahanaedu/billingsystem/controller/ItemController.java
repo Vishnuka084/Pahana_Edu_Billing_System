@@ -1,13 +1,19 @@
-package com.pahanaedu.billingsystem.api;
+package com.pahanaedu.billingsystem.controller;
 
+import com.pahanaedu.billingsystem.Exception.ConstrainViolationException;
 import com.pahanaedu.billingsystem.Exception.NotFoundException;
 import com.pahanaedu.billingsystem.config.ServiceFactory;
 import com.pahanaedu.billingsystem.dto.ItemDTO;
 import com.pahanaedu.billingsystem.dto.RespondsDTO;
 import com.pahanaedu.billingsystem.service.ItemService;
+import com.pahanaedu.billingsystem.type.ServiceTypes;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,7 +25,7 @@ import java.util.List;
  * Date:2025-08-16
  * Time:14:35
  */
-public class ItemHandler extends HttpServlet {
+public class ItemController extends HttpServlet {
     private ItemService itemService;
     private BasicDataSource bds;
 
