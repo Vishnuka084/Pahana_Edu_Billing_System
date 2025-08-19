@@ -1,4 +1,4 @@
-package com.pahanaedu.billingsystem.dao;
+package com.pahanaedu.billingsystem.type;
 
 /**
  * Author: Vishnuka Yahan De Silva
