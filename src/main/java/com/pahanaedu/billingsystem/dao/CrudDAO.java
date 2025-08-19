@@ -1,4 +1,4 @@
-package com.pahanaedu.billingsystem.util;
+package com.pahanaedu.billingsystem.dao;
 
 import com.pahanaedu.billingsystem.Exception.ConstrainViolationException;
 import com.pahanaedu.billingsystem.entity.SuperEntity;
@@ -14,7 +14,7 @@ import java.util.List;
  * Time:13:33
  */
 
-public interface CrudDAO <T extends SuperEntity,ID> extends SuperDAO{
+public interface CrudDAO <T extends SuperEntity,ID> extends SuperDAO {
 
     boolean add(T entity, Connection connection) throws SQLException;
 
