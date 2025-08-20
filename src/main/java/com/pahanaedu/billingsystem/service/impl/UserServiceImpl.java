@@ -4,6 +4,7 @@ import com.pahanaedu.billingsystem.Exception.ConstrainViolationException;
 import com.pahanaedu.billingsystem.Exception.NotFoundException;
 import com.pahanaedu.billingsystem.config.DaoFactory;
 import com.pahanaedu.billingsystem.dao.UserDAO;
+import com.pahanaedu.billingsystem.dto.SignInDetailsDTO;
 import com.pahanaedu.billingsystem.dto.UserDTO;
 import com.pahanaedu.billingsystem.entity.User;
 import com.pahanaedu.billingsystem.service.UserService;
@@ -31,15 +32,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean verifyPassword(UserDTO userDTO) throws SQLException {
+    public boolean verifyPassword(SignInDetailsDTO signInDetailsDTO) throws SQLException,ConstrainViolationException,NotFoundException{
+
         boolean passwordISMatched = false;
 
-        if (!userDTO.getUsername().isEmpty()){
+        if (!signInDetailsDTO.getUsername().isEmpty()){
             //get userDetails from table
-            UserDTO user = this.getUser(userDTO.getUsername());
+            UserDTO user = this.getUser(signInDetailsDTO.getUsername());
 
             //verify password
-            if (userDTO.getPassword().equals(user.getPassword())){
+            if (signInDetailsDTO.getPassword().equals(user.getPassword())){
                 passwordISMatched = true;
             }
 
@@ -61,7 +63,6 @@ public class UserServiceImpl implements UserService {
             }
 
             return Convertor.toUserDTO(userByUsername);
-
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.pahanaedu.billingsystem.service;
 
+import com.pahanaedu.billingsystem.Exception.ConstrainViolationException;
 import com.pahanaedu.billingsystem.Exception.NotFoundException;
+import com.pahanaedu.billingsystem.dto.SignInDetailsDTO;
 import com.pahanaedu.billingsystem.dto.UserDTO;
 
 import java.sql.SQLException;
@@ -14,7 +16,7 @@ import java.sql.SQLException;
 
 public interface UserService extends SuperService {
 
-    boolean verifyPassword(UserDTO userDTO) throws SQLException;
+    boolean verifyPassword(SignInDetailsDTO loginDetailsDTO) throws SQLException, ConstrainViolationException,NotFoundException;
 
     UserDTO getUser(String username) throws SQLException, NotFoundException;
 

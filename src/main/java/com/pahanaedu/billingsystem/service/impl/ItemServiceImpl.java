@@ -7,6 +7,7 @@ import com.pahanaedu.billingsystem.dto.ItemDTO;
 import com.pahanaedu.billingsystem.entity.Item;
 import com.pahanaedu.billingsystem.service.ItemService;
 import com.pahanaedu.billingsystem.type.DaoTypes;
+import com.pahanaedu.billingsystem.util.Convertor;
 import com.pahanaedu.billingsystem.util.Mapper;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -34,7 +35,13 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public boolean addNewItem(ItemDTO itemDTO) throws SQLException {
         try (Connection connection = this.bds.getConnection();){
-            return itemDAO.add(Mapper.toItem(itemDTO),connection);
+            //get new id
+            String nextItemCode = itemDAO.getNextItemCode(connection);
+
+            System.out.println("Next item code :"+nextItemCode);
+
+            itemDTO.setItemCode(nextItemCode);
+            return itemDAO.add(Convertor.toItem(itemDTO),connection);
         }
     }
 
@@ -42,9 +49,9 @@ public class ItemServiceImpl implements ItemService {
     public ItemDTO updateItem(ItemDTO itemDTO) throws SQLException {
         try (Connection connection = this.bds.getConnection();){
             Item updatedItem =
-                    itemDAO.update(Mapper.toItem(itemDTO), connection);
+                    itemDAO.update(Convertor.toItem(itemDTO), connection);
             if (updatedItem!=null){
-                return Mapper.toItemDTO(updatedItem);
+                return Convertor.toItemDTO(updatedItem);
             }else {
                 return null;
             }
@@ -65,7 +72,7 @@ public class ItemServiceImpl implements ItemService {
     public List<ItemDTO> getAll() throws SQLException {
         try (Connection connection = this.bds.getConnection()){
             // delete customer
-            return itemDAO.getAll(connection).stream().map(Mapper::toItemDTO).collect(Collectors.toList());
+            return itemDAO.getAll(connection).stream().map(Convertor::toItemDTO).collect(Collectors.toList());
         }
     }
 
@@ -77,11 +84,12 @@ public class ItemServiceImpl implements ItemService {
             if (item == null){
                 throw new NotFoundException("Item not found!");
             }
-            return new ItemDTO(
-                    item.getItemCode(),
-                    item.getDescription(),
-                    item.getUnitPrice(),
-                    item.getQtyOnHand());
+//            return new ItemDTO(
+//                    item.getItemCode(),
+//                    item.getDescription(),
+//                    item.getUnitPrice(),
+//                    item.getQtyOnHand());
+            return Convertor.toItemDTO(item);
         }
     }
 }

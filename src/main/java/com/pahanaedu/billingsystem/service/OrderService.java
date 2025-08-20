@@ -1,5 +1,11 @@
 package com.pahanaedu.billingsystem.service;
 
+import com.pahanaedu.billingsystem.Exception.ConstrainViolationException;
+import com.pahanaedu.billingsystem.Exception.NotFoundException;
+import com.pahanaedu.billingsystem.dto.OrderDTO;
+
+import java.sql.SQLException;
+
 /**
  * Author: Vishnuka Yahan De Silva
  * User:macbookair
@@ -9,6 +15,6 @@ package com.pahanaedu.billingsystem.service;
 
 public interface OrderService extends SuperService {
 
-    boolean addNewOrder();
+    void addNewOrder(OrderDTO orderDTO) throws SQLException, NotFoundException, ConstrainViolationException;
 
 }
