@@ -6,14 +6,12 @@ package com.pahanaedu.billingsystem.entity;
  * Date:2025-08-16
  * Time:12:57
  */
-public class Item  implements SuperEntity{
+public class Item implements SuperEntity{
     private String itemCode;
     private String description;
     private Double unitPrice;
     private int qtyOnHand;
 
-
-    //cons
     public Item() {
     }
 
@@ -24,8 +22,6 @@ public class Item  implements SuperEntity{
         this.qtyOnHand = qtyOnHand;
     }
 
-
-    //getter method
     public String getItemCode() {
         return itemCode;
     }
@@ -38,8 +34,6 @@ public class Item  implements SuperEntity{
         return description;
     }
 
-
-    //setter method
     public void setDescription(String description) {
         this.description = description;
     }
@@ -60,8 +54,6 @@ public class Item  implements SuperEntity{
         this.qtyOnHand = qtyOnHand;
     }
 
-
-    //tostring
     @Override
     public String toString() {
         return "Item{" +
@@ -71,5 +63,4 @@ public class Item  implements SuperEntity{
                 ", qtyOnHand=" + qtyOnHand +
                 '}';
     }
-
 }
