@@ -98,4 +98,32 @@ public class CustomerDAOImpl implements CustomerDAO {
 
         return customerList;
     }
+
+    @Override
+    public String getNextCustomerId(Connection connection) throws SQLException {
+        ResultSet resultSet =
+                DBUtil.executeQuery(connection,"SELECT accountNumber FROM Customer ORDER BY accountNumber DESC LIMIT 1");
+        String lastCode="";
+        if (resultSet.next()){
+            System.out.println("recode ekak set una");
+            lastCode=resultSet.getString("accountNumber");
+        }
+        return generateNextCustomerID(lastCode);
+    }
+
+    private static String generateNextCustomerID(String lastCode) {
+
+        System.out.println("Old cus code : "+lastCode);
+
+        if (!lastCode.isEmpty()){
+            String[] strings = lastCode.split("-");
+            int num = Integer.parseInt(strings[1]);
+            num += 1;
+
+            String newOrderId=String.format("-%04d",num);
+            return "C"+newOrderId;
+        }
+
+        return "C-0001";
+    }
 }

@@ -40,11 +40,12 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User getByPk(String pk, Connection connection) throws SQLException {
         ResultSet resultSet =
-                DBUtil.executeQuery(connection, "SELECT * FROM User WHERE username=?",pk);
+                DBUtil.executeQuery(connection, "SELECT * FROM Users WHERE username=?",pk);
         User user = null;
 
         if (resultSet.next()){
             user = new User(
+                    resultSet.getInt("userId"),
                     resultSet.getString("username"),
                     resultSet.getString("password")
             );
