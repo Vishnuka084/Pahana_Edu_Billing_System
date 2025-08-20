@@ -4,6 +4,7 @@ import com.pahanaedu.billingsystem.Exception.ConstrainViolationException;
 import com.pahanaedu.billingsystem.Exception.NotFoundException;
 import com.pahanaedu.billingsystem.config.ServiceFactory;
 import com.pahanaedu.billingsystem.dto.RespondsDTO;
+import com.pahanaedu.billingsystem.dto.SignInDetailsDTO;
 import com.pahanaedu.billingsystem.dto.UserDTO;
 import com.pahanaedu.billingsystem.service.UserService;
 import com.pahanaedu.billingsystem.type.ServiceTypes;
@@ -40,9 +41,9 @@ public class UserController extends HttpServlet {
         Jsonb jsonb = JsonbBuilder.create();
         try {
 
-            UserDTO userDTO = jsonb.fromJson(req.getReader(), UserDTO.class);
+            SignInDetailsDTO signInDetailsDTO = jsonb.fromJson(req.getReader(), SignInDetailsDTO.class);
 
-            boolean verifyPassword = userService.verifyPassword(userDTO);
+            boolean verifyPassword = userService.verifyPassword(signInDetailsDTO);
 
             if (verifyPassword) {
                 resp.setStatus(HttpServletResponse.SC_OK);
