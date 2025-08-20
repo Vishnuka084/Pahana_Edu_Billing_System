@@ -7,6 +7,5 @@ package com.pahanaedu.billingsystem.type;
  * Time:14:25
  */
 public enum ServiceTypes {
-
-    CUSTOMER,ITEM
+    CUSTOMER,ITEM,ORDER,USER
 }
