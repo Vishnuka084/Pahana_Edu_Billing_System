@@ -3,6 +3,8 @@ package com.pahanaedu.billingsystem.config;
 import com.pahanaedu.billingsystem.service.SuperService;
 import com.pahanaedu.billingsystem.service.impl.CustomerServiceImpl;
 import com.pahanaedu.billingsystem.service.impl.ItemServiceImpl;
+import com.pahanaedu.billingsystem.service.impl.OrderServiceImpl;
+import com.pahanaedu.billingsystem.service.impl.UserServiceImpl;
 import com.pahanaedu.billingsystem.type.ServiceTypes;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -25,18 +27,19 @@ public class ServiceFactory {
 
     public SuperService getService(ServiceTypes serviceTypes, BasicDataSource bds){
         switch (serviceTypes){
-//            case USER:
-//                return new UserServiceImpl();
+            case USER:
+                return new UserServiceImpl(bds);
             case CUSTOMER:
                 return new CustomerServiceImpl(bds);
             case ITEM:
                 return new ItemServiceImpl(bds);
-//            case ORDER:
-//                return new OrderServiceImpl();
+            case ORDER:
+                return new OrderServiceImpl(bds);
 //            case ORDER_DETAIL:
 //                return new OrderDetailsServiceImpl();
             default:
                 return null;
         }
     }
+
 }

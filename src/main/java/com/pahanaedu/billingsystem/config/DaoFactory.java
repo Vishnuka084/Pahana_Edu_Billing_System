@@ -1,9 +1,8 @@
 package com.pahanaedu.billingsystem.config;
 
+import com.pahanaedu.billingsystem.dao.impl.*;
 import com.pahanaedu.billingsystem.type.DaoTypes;
 import com.pahanaedu.billingsystem.dao.SuperDAO;
-import com.pahanaedu.billingsystem.dao.impl.CustomerDAOImpl;
-import com.pahanaedu.billingsystem.dao.impl.ItemDAOImpl;
 
 /**
  * Author: Vishnuka Yahan De Silva
@@ -23,16 +22,16 @@ public class DaoFactory {
 
     public SuperDAO getDAO(DaoTypes daoTypes){
         switch (daoTypes){
-//            case USER:
-//                return new UserDAOImpl();
+            case USER:
+                return new UserDAOImpl();
             case CUSTOMER:
                 return new CustomerDAOImpl();
             case ITEM:
                 return new ItemDAOImpl();
-//            case ORDER:
-//                return new OrderDAOImpl();
-//            case ORDER_DETAIL:
-//                return new OrderDetailsDAOImpl();
+            case ORDER:
+                return new OrderDAOImpl();
+            case ORDER_DETAIL:
+                return new OrderDetailsDAOImpl();
             default:
                 return null;
         }
