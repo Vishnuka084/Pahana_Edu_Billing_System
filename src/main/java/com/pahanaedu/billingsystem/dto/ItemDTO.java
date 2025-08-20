@@ -7,7 +7,6 @@ package com.pahanaedu.billingsystem.dto;
  * Time:12:58
  */
 public class ItemDTO {
-
     private String itemCode;
     private String description;
     private Double unitPrice;
