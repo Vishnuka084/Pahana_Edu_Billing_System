@@ -3,30 +3,19 @@ package com.pahanaedu.billingsystem.dto;
 /**
  * Author: Vishnuka Yahan De Silva
  * User:macbookair
- * Date:2025-08-16
- * Time:15:51
+ * Date:2025-08-17
+ * Time:13:11
  */
-public class UserDTO {
-
-    private int userId ;
+public class SignInDetailsDTO {
     private String username;
     private String password;
 
-    public UserDTO() {
+    public SignInDetailsDTO() {
     }
 
-    public UserDTO(int userId, String username, String password) {
-        this.userId = userId;
+    public SignInDetailsDTO(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getUsername() {
@@ -47,11 +36,11 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "UserDTO{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
+        return "LoginDetailsDTO{" +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
 }
+
 

@@ -1,21 +1,21 @@
-package com.pahanaedu.billingsystem.dto;
+package com.pahanaedu.billingsystem.entity;
 
 /**
  * Author: Vishnuka Yahan De Silva
  * User:macbookair
  * Date:2025-08-16
- * Time:15:51
+ * Time:16:00
  */
-public class UserDTO {
+public class User implements SuperEntity {
 
     private int userId ;
     private String username;
     private String password;
 
-    public UserDTO() {
+    public User() {
     }
 
-    public UserDTO(int userId, String username, String password) {
+    public User(int userId, String username, String password) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -54,4 +54,3 @@ public class UserDTO {
                 '}';
     }
 }
-

@@ -18,7 +18,7 @@ public interface CustomerService extends SuperService {
 
     CustomerDTO updateCustomer(CustomerDTO customerDTO) throws SQLException;
 
-    void deleteCustomer(String id) throws SQLException, NotFoundException;
+    void deleteCustomer(String id) throws SQLException,NotFoundException;
 
     List<CustomerDTO> getAll() throws SQLException;
 

@@ -8,5 +8,5 @@ package com.pahanaedu.billingsystem.type;
  */
 public enum DaoTypes {
     ///
-    CUSTOMER,ITEM,USER,ORDER
+    CUSTOMER,ITEM,USER,ORDER,ORDER_DETAIL,
 }

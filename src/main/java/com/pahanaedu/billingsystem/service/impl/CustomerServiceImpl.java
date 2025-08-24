@@ -7,6 +7,7 @@ import com.pahanaedu.billingsystem.dto.CustomerDTO;
 import com.pahanaedu.billingsystem.entity.Customer;
 import com.pahanaedu.billingsystem.service.CustomerService;
 import com.pahanaedu.billingsystem.type.DaoTypes;
+import com.pahanaedu.billingsystem.util.Convertor;
 import com.pahanaedu.billingsystem.util.Mapper;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -35,7 +36,10 @@ public class CustomerServiceImpl implements CustomerService {
     public boolean addNewCustomer(CustomerDTO customerDTO) throws SQLException {
 
         try (Connection connection = this.bds.getConnection();){
-            return customerDAO.add(Mapper.toCustomer(customerDTO),connection);
+            //get next acc id
+            String nextCustomerId = customerDAO.getNextCustomerId(connection);
+            customerDTO.setAccountNumber(nextCustomerId);
+            return customerDAO.add(Convertor.toCustomer(customerDTO),connection);
         }
 
     }
@@ -45,9 +49,9 @@ public class CustomerServiceImpl implements CustomerService {
 
         try (Connection connection = this.bds.getConnection();){
             Customer updatedCustomer =
-                    customerDAO.update(Mapper.toCustomer(customerDTO), connection);
+                    customerDAO.update(Convertor.toCustomer(customerDTO), connection);
             if (updatedCustomer!=null){
-                return Mapper.toCustomerDTO(updatedCustomer);
+                return Convertor.toCustomerDTO(updatedCustomer);
             }else {
                 return null;
             }
@@ -75,7 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
     public List<CustomerDTO> getAll() throws SQLException {
         try (Connection connection = this.bds.getConnection()){
             // delete customer
-            return customerDAO.getAll(connection).stream().map(Mapper::toCustomerDTO).collect(Collectors.toList());
+            return customerDAO.getAll(connection).stream().map(Convertor::toCustomerDTO).collect(Collectors.toList());
         }
     }
 
@@ -96,3 +100,4 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 }
+

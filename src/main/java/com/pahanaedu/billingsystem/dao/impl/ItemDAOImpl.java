@@ -18,7 +18,6 @@ import java.util.List;
  * Time:13:34
  */
 public class ItemDAOImpl implements ItemDAO {
-
     @Override
     public boolean add(Item item, Connection connection) throws SQLException {
         return DBUtil.executeUpdate(
@@ -58,10 +57,12 @@ public class ItemDAOImpl implements ItemDAO {
 
     @Override
     public Item getByPk(String pk, Connection connection) throws SQLException {
+        System.out.println("In Item  ID : "+pk);
         ResultSet resultSet =
-                DBUtil.executeQuery(connection, "SELECT * FROM Item WHERE itemCode like '% "+pk+"%' LIMIT 1");
+                DBUtil.executeQuery(connection, "SELECT * FROM Item WHERE itemCode=?",pk);
         Item itemById = null;
-        while (resultSet.next()){
+
+        if (resultSet.next()){
             itemById = new Item(
                     resultSet.getString("itemCode"),
                     resultSet.getString("description"),
@@ -70,7 +71,7 @@ public class ItemDAOImpl implements ItemDAO {
             );
         }
 
-        System.out.println(itemById);
+//        System.out.println(itemById);
 
         return itemById;
     }
@@ -91,5 +92,38 @@ public class ItemDAOImpl implements ItemDAO {
         }
 
         return itemList;
+    }
+
+    @Override
+    public boolean reduceItemQty(String itemCode, int qty, Connection connection) throws SQLException {
+        return DBUtil.executeUpdate(connection, "UPDATE Item SET qtyOnHand=qtyOnHand-? WHERE itemCode=?", qty, itemCode);
+    }
+
+    @Override
+    public String getNextItemCode(Connection connection) throws SQLException {
+        ResultSet resultSet =
+                DBUtil.executeQuery(connection,"SELECT itemCode FROM Item ORDER BY itemCode DESC LIMIT 1");
+        String lastCode="";
+        if (resultSet.next()){
+            System.out.println("recode ekak set una");
+            lastCode=resultSet.getString("itemCode");
+        }
+        return generateNextItemCode(lastCode);
+    }
+
+    private static String generateNextItemCode(String lastCode) {
+
+        System.out.println("Old code : "+lastCode);
+
+        if (!lastCode.isEmpty()){
+            String[] strings = lastCode.split("-");
+            int num = Integer.parseInt(strings[1]);
+            num += 1;
+
+            String newOrderId=String.format("-%04d",num);
+            return "I"+newOrderId;
+        }
+
+        return "I-0001";
     }
 }

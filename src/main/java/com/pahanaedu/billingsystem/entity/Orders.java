@@ -1,31 +1,28 @@
-package com.pahanaedu.billingsystem.dto;
+package com.pahanaedu.billingsystem.entity;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Author: Vishnuka Yahan De Silva
  * User:macbookair
- * Date:2025-08-16
- * Time:12:58
+ * Date:2025-08-19
+ * Time:16:01
  */
-public class OrderDTO {
+public class Orders implements SuperEntity {
 
     private String orderId;
     private String customerId;
     private Date orderDate;
     private Double total;
-    private List<OrderDetailsDTO> orderDetails;
 
-    public OrderDTO() {
+    public Orders() {
     }
 
-    public OrderDTO(String orderId, String customerId, Date orderDate, Double total, List<OrderDetailsDTO> orderDetails) {
+    public Orders(String orderId, String customerId, Date orderDate, Double total) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.orderDate = orderDate;
         this.total = total;
-        this.orderDetails = orderDetails;
     }
 
     public String getOrderId() {
@@ -60,22 +57,13 @@ public class OrderDTO {
         this.total = total;
     }
 
-    public List<OrderDetailsDTO> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(List<OrderDetailsDTO> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
-
     @Override
     public String toString() {
-        return "OrderDTO{" +
+        return "Orders{" +
                 "orderId='" + orderId + '\'' +
                 ", customerId='" + customerId + '\'' +
                 ", orderDate=" + orderDate +
                 ", total=" + total +
-                ", orderDetails=" + orderDetails +
                 '}';
     }
 }

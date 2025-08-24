@@ -28,7 +28,7 @@ public class ApplicationListener implements ServletContextListener {
         bts.setDriverClassName("com.mysql.cj.jdbc.Driver");
         bts.setUrl("jdbc:mysql://localhost/pahana_edu");
         bts.setUsername("root");
-        bts.setPassword("Vishnuka");
+        bts.setPassword("1234");
 
         bts.setMaxTotal(5);//add how many connection we want
         bts.setInitialSize(5);//set how many connection we should initialize
@@ -36,6 +36,7 @@ public class ApplicationListener implements ServletContextListener {
         ServletContext servletContext = servletContextEvent.getServletContext();//get servlet context
         servletContext.setAttribute("bds",bts);//add bds to servlet context
     }
+
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         System.out.println("Context Destroyed");
